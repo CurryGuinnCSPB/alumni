@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alumni Table (No Names)</title>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    table {
+      width: 100%;
+      background: white;
+      border-collapse: collapse;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #0077cc;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Alumni Directory (No Names)</h1>
+
+<table id="alumniTable" class="display" style="width:100%">
+  <thead>
+    <tr>
+      <th>Graduation Year</th>
+      <th>Company</th>
+      <th>Industry</th>
+      <th>Job Title</th>
+      <th>City</th>
+      <th>State</th>
+    </tr>
+  </thead>
+</table>
+
+<script>
+$(document).ready(function() {
+  const alumniData = [
+  [
+    "2018",
+    "Ford Motor Company",
+    "Automotive & Transportation",
+    "HPC Systems Engineer",
+    "Detroit",
+    "Michigan"
+  ],
+  [
+    "2018",
+    "Amazon",
+    "Technology & Software",
+    "Software Engineer",
+    "Denver",
+    "Colorado"
+  ],
+  [
+    "2018",
+    "ExoTerra Resource LLC",
+    "Aerospace & Defense",
+    "Senior Software Engineer",
+    "Denver",
+    "Colorado"
+  ],
+  [
+    "2019",
+    "aDolus Technology Inc",
+    "Technology & Software",
+    "Software/Data Developer",
+    "Seattle",
+    "Washington"
+  ],
+  [
+    "2019",
+    "Vertafore",
+    "Technology & Software",
+    "Software Engineer",
+    "Golden",
+    "Colorado"
+  ],
+  [
+    "2019",
+    "Guild Education",
+    "Education & Research",
+    "Senior Software Engineer II",
+    "Denver",
+    "Colorado"
+  ],
+  [
+    "2019",
+    "Enveda Biosciences",
+    "Healthcare & Biotechnology",
+    "Software Engineer II",
+    "Boulder",
+    "Colorado"
+  ],
+  [
+    "2019",
+    "Michigan Medicine",
+    "Healthcare & Biotechnology",
+    "Research Analyst",
+    "Ann Arbor",
+    "Michigan"
+  ],
+  [
+    "2019",
+    "Wedge",
+    "Other / Unknown",
+    "Front End Engineer",
+    "Minneapolis",
+    "Minnesota"
+  ],
+  [
+    "2019",
+    "Arrowstreet, Inc.",
+    "Other / Unknown",
+    "Associate - Architect",
+    "Burlington",
+    "Vermont"
+  ],
+  [
+    "2019",
+    "Reliance HIE",
+    "Other / Unknown",
+    "Developer/ETL Engineer",
+    "Portland",
+    "Oregon"
+  ],
+  [
+    "2019",
+    "Hudl",
+    "Sports & Recreation",
+    "Software Engineer",
+    "Lincoln",
+    "Nebraska"
+  ],
+  [
+    "2019",
+    "Opus IVS",
+    "Automotive & Transportation",
+    "NetSuite Engineer",
+    "Denver",
+    "Colorado"
+  ],
+  [
+    "2020",
+    "Google",
+    "Technology & Software",
+    "Chief Technology Officer",
+    "Golden",
+    "Colorado"
+  ],
+  [
+    "2020",
+    "DEPT",
+    "Gaming & Entertainment",
+    "Senior Software Engineer",
+    "Denver",
+    "Colorado"
+  ],
+  [
+    "2020",
+    "Raytheon Intelligence & Space",
+    "Aerospace & Defense",
+    "Senior Software Engineer",
+    "Arlington",
+    "Virginia"
+  ],
+  [
+    "2020",
+    "Self-employed",
+    "nan",
+    "Software Engineer",
+    "Colorado Springs",
+    "Colorado"
+  ],
+  [
+    "2020",
+    "Univ. of Pittsburgh School of Medicine",
+    "Education & Research",
+    "Ph.D. Student",
+    "Pittsburgh",
+    "Pennsylvania"
+  ],
+  [
+    "2020",
+    "ChargePoint",
+    "Energy & Utilities",
+    "Test Engineering Manager",
+    "San Jose",
+    "California"
+  ],
+  [
+    "2020",
+    "CrowdStrike",
+    "Technology & Software",
+    "Senior Security Analyst",
+    "Austin",
+    "Texas"
+  ],
+  [
+    "2020",
+    "Wodify",
+    "Sports & Recreation",
+    "Senior Software Engineer",
+    "Pittsburgh",
+    "Pennsylvania"
+  ],
+  [
+    "2020",
+    "Procore Technologies",
+    "Technology & Software",
+    "Software Engineer",
+    "Boulder",
+    "Colorado"
+  ],
+  [
+    "2020",
+    "Handshake",
+    "Technology & Software",
+    "Software Engineer",
+    "Colorado Springs",
+    "Colorado"
+  ],
+  [
+    "2020",
+    "Puppet",
+    "Technology & Software",
+    "Software Engineer",
+    "Port Charlotte",
+    "Florida"
+  ],
+  [
+    "2020",
+    "Cooperative Institute for Research in Environmental Sciences",
+    "Education & Research",
+    "Research Scientist",
+    "Boulder",
+    "Colorado"
+  ],
+  [
+    "2020",
+    "Google",
+    "Technology & Software",
+    "Software Engineer",
+    "Boulder",
+    "Colorado"
+  ],
+  [
+    "2020",
+    "Handshake",
+    "Technology & Software",
+    "Legal Engineer",
+    "Denver",
+    "Colorado"
+  ],
+  [
+    "2020",
+    "Initialized Capital",
+    "Startups & Innovation",
+    "Lead Software Engineer",
+    "San Francisco",
+    "California"
+  ],
+  [
+    "2020",
+    "Capital One",
+    "Finance & Investment",
+    "Software Engineer",
+    "Honolulu",
+    "Hawaii"
+  ],
+  [
+    "2020",
+    "CU Boulder",
+    "Education & Research",
+    "Instructor",
+    "Boulder",
+    "Colorado"
+  ],
+  [
+    "2020",
+    "General Motors",
+    "Automotive & Transportation",
+    "Software Engineer",
+    "Chandler",
+    "Arizona"
+  ],
+  [
+    "2020",
+    "Workiva",
+    "Other / Unknown",
+    "Senior Software Engineer",
+    "Denver",
+    "Colorado"
+  ],
+  [
+    "2021",
+    "Deloitte",
+    "Consulting & Professional Services",
+    "Solutions Engineering Consultant",
+    "Denver",
+    "Colorado"
+  ],
+  [
+    "2021",
+    "Canonical",
+    "Technology & Software",
+    "Software Security Engineer",
+    "nan",
+    "Uruguay"
+  ],
+  [
+    "2021",
+    "BI Incorporated",
+    "Other / Unknown",
+    "Senior Software Engineer",
+    "Englewood",
+    "Colorado"
+  ],
+  [
+    "2021",
+    "CU Boulder",
+    "Education & Research",
+    "Senior Professional Research Assistant",
+    "Boulder",
+    "Colorado"
+  ],
+  [
+    "2021",
+    "German Intl. School of Silicon Valley",
+    "Education & Research",
+    "Teacher",
+    "Mountain View",
+    "California"
+  ],
+  [
+    "2021",
+    "Virginia529",
+    "Finance & Investment",
+    "IT Operations Director",
+    "Richmond",
+    "Virginia"
+  ],
+  [
+    "2021",
+    "PGA Tour",
+    "Sports & Recreation",
+    "Senior Software Engineer",
+    "Brooklyn",
+    "New York"
+  ],
+  [
+    "2021",
+    "Launch Consulting Group",
+    "Consulting & Professional Services",
+    "Regulatory Compliance Specialist",
+    "Muskegon",
+    "Michigan"
+  ],
+  [
+    "2021",
+    "Upgrade Inc.",
+    "Finance & Investment",
+    "Analytics Senior Manager",
+    "Denver",
+    "Colorado"
+  ],
+  [
+    "2021",
+    "Microsoft",
+    "Technology & Software",
+    "Research Scientist",
+    "San Antonio",
+    "Texas"
+  ],
+  [
+    "2021",
+    "Zynex Monitoring Solutions",
+    "Technology & Software",
+    "Software Engineer",
+    "Boulder",
+    "Colorado"
+  ],
+  [
+    "2021",
+    "Levi Strauss & Co",
+    "Retail & Consumer Goods",
+    "Sr. Business Consultant/Data Analyst",
+    "Chicago",
+    "Illinois"
+  ],
+  [
+    "2021",
+    "Amazon",
+    "Technology & Software",
+    "Software Development Engineer",
+    "Denver",
+    "Colorado"
+  ],
+  [
+    "2021",
+    "CACI",
+    "Aerospace & Defense",
+    "AI/ML Software Engineer",
+    "Denver",
+    "Colorado"
+  ],
+  [
+    "2021",
+    "Tyler Technologies",
+    "Consulting & Professional Services",
+    "Software Engineer",
+    "Denver",
+    "Colorado"
+  ],
+  [
+    "2021",
+    "Cooperative Institute for Research in Environmental Sciences",
+    "Education & Research",
+    "Software Engineer",
+    "Longmont",
+    "Colorado"
+  ],
+  [
+    "2021",
+    "Roche",
+    "Healthcare & Biotechnology",
+    "Data Services Manager",
+    "Starnberg",
+    "Germany"
+  ],
+  [
+    "2021",
+    "Lockheed Martin",
+    "Aerospace & Defense",
+    "Software Engineer",
+    "Fort Worth",
+    "Texas"
+  ],
+  [
+    "2021",
+    "Suki",
+    "Other / Unknown",
+    "Software Engineer",
+    "San Francisco",
+    "California"
+  ],
+  [
+    "2021",
+    "RadiaSoft LLC",
+    "Other / Unknown",
+    "Software Engineer",
+    "Boulder",
+    "Colorado"
+  ],
+  [
+    "2021",
+    "Salesforce",
+    "Technology & Software",
+    "Senior Data Analyst",
+    "Corvallis",
+    "Oregon"
+  ],
+  [
+    "2021",
+    "Nike",
+    "Retail & Consumer Goods",
+    "Software Engineer",
+    "Portland",
+    "Oregon"
+  ],
+  [
+    "2021",
+    "Northrop Grumman",
+    "Aerospace & Defense",
+    "Principal Software Engineer",
+    "Denver",
+    "Colorado"
+  ],
+  [
+    "2021",
+    "Charles Schwab",
+    "Finance & Investment",
+    "Senior Software Engineer",
+    "Los Angelos",
+    "California"
+  ],
+  [
+    "2022",
+    "DirectTV",
+    "Media & Communications",
+    "Software Engineer",
+    "Los Angelos",
+    "California"
+  ],
+  [
+    "2022",
+    "Schneider Electric",
+    "Manufacturing & Engineering",
+    "Senior Software Engineer",
+    "Durango",
+    "Colorado"
+  ],
+  [
+    "2022",
+    "Cedar Falls Community School District",
+    "Education & Research",
+    "Mathematics and Computer Science Teacher",
+    "Waterloo",
+    "Iowa"
+  ],
+  [
+    "2022",
+    "Slalom Build",
+    "Technology & Software",
+    "Principal/Lead Engineer",
+    "Boulder",
+    "Colorado"
+  ],
+  [
+    "2022",
+    "Boeing",
+    "Aerospace & Defense",
+    "Software Engineer",
+    "Washington",
+    "DC"
+  ],
+  [
+    "2022",
+    "?",
+    "nan",
+    "Programmer",
+    "Denver",
+    "Colorado"
+  ],
+  [
+    "2022",
+    "Evernorth Health Services\u00ff",
+    "Healthcare & Biotechnology",
+    "Lead Analyst",
+    "Kaneohe",
+    "Hawaii"
+  ],
+  [
+    "2022",
+    "Esri",
+    "Other / Unknown",
+    "Software Engineer II",
+    "Temecula",
+    "California"
+  ],
+  [
+    "2022",
+    "Discover Financial Services",
+    "Finance & Investment",
+    "Data Science Analyst",
+    "Chicago",
+    "Illinois"
+  ],
+  [
+    "2022",
+    "Appian Corporation",
+    "Consulting & Professional Services",
+    "Senior Technical Consultant",
+    "NYC",
+    "New York"
+  ],
+  [
+    "2022",
+    "Publicus Sapient",
+    "Media & Communications",
+    "Software Engineer",
+    "Denver",
+    "Colorado"
+  ],
+  [
+    "2022",
+    "11:11 Systems",
+    "Other / Unknown",
+    "Senior Frontend Developer",
+    "Dallas",
+    "Texas"
+  ],
+  [
+    "2022",
+    "Kenosha EPC",
+    "Manufacturing & Engineering",
+    "Senior Process Engineer",
+    "Englewood",
+    "Colorado"
+  ],
+  [
+    "2022",
+    "Sovrn",
+    "Publishing",
+    "Software Engineer III",
+    "Denver",
+    "Colorado"
+  ],
+  [
+    "2022",
+    "Blue Origin",
+    "Aerospace & Defense",
+    "Embedded Software Engineer",
+    "Redmond",
+    "Washington"
+  ],
+  [
+    "2022",
+    "Chewy",
+    "Retail & Consumer Goods",
+    "Software Engineer",
+    "Seattle",
+    "Washington"
+  ],
+  [
+    "2022",
+    "Cooperative Institute for Research in Environmental Sciences",
+    "Education & Research",
+    "Software Engineer",
+    "Chicago",
+    "Illinois"
+  ],
+  [
+    "2022",
+    "Self-employed",
+    "nan",
+    "Research Associate",
+    "Pittsburgh",
+    "Pennsylvania"
+  ],
+  [
+    "2022",
+    "Gravity Foundation",
+    "Other / Unknown",
+    "Software Engineer",
+    "Denver",
+    "Colorado"
+  ],
+  [
+    "2022",
+    "thatgamecompany",
+    "Gaming & Entertainment",
+    "Technical Support Engineer",
+    "Los Angelos",
+    "California"
+  ],
+  [
+    "2022",
+    "NOV",
+    "Energy & Utilities",
+    "Mechanical Engineer",
+    "Austin",
+    "Texas"
+  ],
+  [
+    "2022",
+    "TDI Technologies",
+    "Manufacturing & Engineering",
+    "Junior Data Scientist",
+    "Middletown",
+    "Rhode Island"
+  ],
+  [
+    "2022",
+    "Launch Consulting Group",
+    "Consulting & Professional Services",
+    "Solution Architect",
+    "Seattle",
+    "Washington"
+  ],
+  [
+    "2022",
+    "G Lostistics",
+    "Other / Unknown",
+    "DevOps Engineer",
+    "Cheyenne",
+    "Wyoming"
+  ],
+  [
+    "2022",
+    "Teck Resources Limited",
+    "Other / Unknown",
+    "Data Scientist",
+    "Vancouver",
+    "Canada"
+  ],
+  [
+    "2022",
+    "Alarm.com",
+    "Other / Unknown",
+    "Software Engineer",
+    "Parker",
+    "Colorado"
+  ],
+  [
+    "2022",
+    "Terpmetrix",
+    "Other / Unknown",
+    "Owner",
+    "Boulder",
+    "Colorado"
+  ],
+  [
+    "2022",
+    "Conga",
+    "Other / Unknown",
+    "Product Security Engineer",
+    "Boulder",
+    "Colorado"
+  ],
+  [
+    "2023",
+    "Product Development Associates, Inc.",
+    "Other / Unknown",
+    "Software Engineer",
+    "Minneapolis",
+    "Minnesota"
+  ],
+  [
+    "2023",
+    "NOAA",
+    "Government & Public Sector",
+    "Software Developer",
+    "Ann Arbor",
+    "Michigan"
+  ],
+  [
+    "2023",
+    "INCEPT 3D",
+    "Other / Unknown",
+    "Application Engineer",
+    "San Diego",
+    "California"
+  ],
+  [
+    "2023",
+    "Lockheed Martin",
+    "Aerospace & Defense",
+    "Senior Software Engineer",
+    "Littleton",
+    "Colorado"
+  ],
+  [
+    "2023",
+    "BNP Media",
+    "Media & Communications",
+    "co-CEO",
+    "Birmingham",
+    "Michigan"
+  ],
+  [
+    "2023",
+    "Tek Experts",
+    "Technology & Software",
+    "Support Engineer",
+    "Colorado Springs",
+    "Colorado"
+  ],
+  [
+    "2023",
+    "Gogo Business Aviation",
+    "Automotive & Transportation",
+    "Director, Product Management",
+    "Denver",
+    "Colorado"
+  ],
+  [
+    "2023",
+    "RSM",
+    "Other / Unknown",
+    "D365 Managed Application Services Associate",
+    "Denver",
+    "Colorado"
+  ],
+  [
+    "2023",
+    "NOAA",
+    "Government & Public Sector",
+    "Code Manager and Software Developer",
+    "Boulder",
+    "Colorado"
+  ],
+  [
+    "2023",
+    "Cleveland Clinic Main Campus Microbiology Lab",
+    "Healthcare & Biotechnology",
+    "Medical Technologist",
+    "Oberlin",
+    "Ohio"
+  ],
+  [
+    "2023",
+    "Charles Schwab",
+    "Finance & Investment",
+    "Software Engineer",
+    "Denver",
+    "Colorado"
+  ],
+  [
+    "2023",
+    "Charles Schwab",
+    "Finance & Investment",
+    "Associate Software Developer",
+    "San Diego",
+    "California"
+  ],
+  [
+    "2023",
+    "Microsoft",
+    "Technology & Software",
+    "Senior Program Manager",
+    "Louisville",
+    "Colorado"
+  ],
+  [
+    "2023",
+    "Umass Amherst",
+    "Education & Research",
+    "Graduate Student",
+    "Sunderland",
+    "Massachusetts"
+  ],
+  [
+    "2023",
+    "Self-employed",
+    "nan",
+    "Web & Software Developer",
+    "Los Angelos",
+    "California"
+  ],
+  [
+    "2023",
+    "Amazon",
+    "Technology & Software",
+    "Data Engineer",
+    "Seattle",
+    "Washington"
+  ],
+  [
+    "2023",
+    "Stealth",
+    "Startups & Innovation",
+    "Founder",
+    "Denver",
+    "Colorado"
+  ],
+  [
+    "2023",
+    "Workiva",
+    "Technology & Software",
+    "Software Engineer",
+    "Denver",
+    "Colorado"
+  ],
+  [
+    "2023",
+    "Gakushuin University",
+    "Education & Research",
+    "Lecturer & Researcher",
+    "Tokyo",
+    "Japan"
+  ],
+  [
+    "2023",
+    "Lockheed Martin",
+    "Aerospace & Defense",
+    "Associate Software Engineer",
+    "Denver",
+    "Colorado"
+  ],
+  [
+    "2023",
+    "Nelnet Diversified Services",
+    "Other / Unknown",
+    "AppSec Engineer",
+    "Wadmalaw Island",
+    "South Carolina"
+  ],
+  [
+    "2023",
+    "TerraPOwer",
+    "Energy & Utilities",
+    "Government Compliance Analyst",
+    "Port Ludlow",
+    "Washington"
+  ],
+  [
+    "2024",
+    "That Recommender Systems Lab",
+    "Technology & Software",
+    "Data Researcher",
+    "Boulder",
+    "Colorado"
+  ],
+  [
+    "2024",
+    "Concurrent Technologies Corp",
+    "Other / Unknown",
+    "Assistant Software Engineer",
+    "Somerset",
+    "Pennsylvania"
+  ],
+  [
+    "2024",
+    "Self-employed",
+    "nan",
+    "Software Developer",
+    "NYC",
+    "New York"
+  ],
+  [
+    "2024",
+    "Pearson Virtual Schools",
+    "Education & Research",
+    "Senior Systems Support Analyst",
+    "Denver",
+    "Colorado"
+  ],
+  [
+    "2024",
+    "Self-employed",
+    "nan",
+    "Software Engineer",
+    "Aspen",
+    "Colorado"
+  ],
+  [
+    "2024",
+    "Otto Informatica",
+    "Technology & Software",
+    "Front-End Developer Intern",
+    "Broomfield",
+    "Colorado"
+  ],
+  [
+    "2024",
+    "Lockheed Martin Space",
+    "Aerospace & Defense",
+    "DevSecOps Engineer",
+    "Broomfield",
+    "Colorado"
+  ],
+  [
+    "2024",
+    "Schneider Electric",
+    "Manufacturing & Engineering",
+    "Sofware QA Engineer",
+    "Denver",
+    "Colorado"
+  ],
+  [
+    "2024",
+    "Smith Capital Investors, LLC",
+    "Finance & Investment",
+    "Software Engineer",
+    "Boulder",
+    "Colorado"
+  ],
+  [
+    "2024",
+    "Ent Credit Union",
+    "Finance & Investment",
+    "Lending Process Innovation Analyst",
+    "Colorado Springs",
+    "Colorado"
+  ],
+  [
+    "2024",
+    "ASM Global",
+    "Other / Unknown",
+    "MS Dynamics Power Platform Developer",
+    "Westminster",
+    "Colorado"
+  ],
+  [
+    "2024",
+    "Georgia Tech Research Institute",
+    "Education & Research",
+    "Research Engineer I",
+    "Atlanta",
+    "Georgia"
+  ],
+  [
+    "2024",
+    "Spectrum/Charter Communications",
+    "Media & Communications",
+    "Software Engineer Intern",
+    "NYC",
+    "New York"
+  ],
+  [
+    "2024",
+    "TriNet",
+    "Other / Unknown",
+    "Systems Administrator 2",
+    "Austin",
+    "Texas"
+  ],
+  [
+    "2024",
+    "Empirium Inc",
+    "Other / Unknown",
+    "Chief Technology Officer",
+    "Littleton",
+    "Colorado"
+  ],
+  [
+    "2024",
+    "Hyphen Solutions",
+    "Other / Unknown",
+    "Java Developer",
+    "Chino Hills",
+    "California"
+  ],
+  [
+    "2024",
+    "Maxar Technologies",
+    "Aerospace & Defense",
+    "Imagery Support Representative",
+    "Westminster",
+    "Colorado"
+  ],
+  [
+    "2024",
+    "RWS Group",
+    "Other / Unknown",
+    "Quality Assurance Tester",
+    "Thornton",
+    "Colorado"
+  ],
+  [
+    "2024",
+    "G2i Inc.",
+    "Other / Unknown",
+    "Software Eingineer",
+    "Phoenix",
+    "Arizona"
+  ],
+  [
+    "2024",
+    "Vmware",
+    "Technology & Software",
+    "Business Analyst",
+    "Tustin",
+    "California"
+  ],
+  [
+    "2024",
+    "Kwokman Productions",
+    "Gaming & Entertainment",
+    "Solutions Architect",
+    "Mission Viejo",
+    "California"
+  ],
+  [
+    "2024",
+    "Stealth Startup",
+    "Startups & Innovation",
+    "Human",
+    "Boulder",
+    "Colorado"
+  ],
+  [
+    "2024",
+    "Ibotta",
+    "Retail & Consumer Goods",
+    "Client Analytics Decision Scientist Intern",
+    "Denver",
+    "Colorado"
+  ],
+  [
+    "2024",
+    "Self employed",
+    "nan",
+    "Web Integration Consulant",
+    "Denver",
+    "Colorado"
+  ],
+  [
+    "2024",
+    "CIRES/NOAA GSL",
+    "Government & Public Sector",
+    "Intern",
+    "Bailey",
+    "Colorado"
+  ],
+  [
+    "2024",
+    "Parsons Corporation",
+    "Manufacturing & Engineering",
+    "Software Engineer",
+    "San Diego",
+    "California"
+  ],
+  [
+    "2024",
+    "City of Grand Junction",
+    "Government & Public Sector",
+    "Administrative Assistant",
+    "Denton",
+    "Texas"
+  ],
+  [
+    "2024",
+    "Lockheed Martin",
+    "Aerospace & Defense",
+    "Project Engineer",
+    "Littleton",
+    "Colorado"
+  ],
+  [
+    "2024",
+    "Slambox",
+    "Startups & Innovation",
+    "Product Manager",
+    "San Francisco",
+    "California"
+  ],
+  [
+    "2024",
+    "Kinder Morgan, Inc.",
+    "Energy & Utilities",
+    "Program Manager",
+    "Denver",
+    "Colorado"
+  ],
+  [
+    "2024",
+    "Applied Materials",
+    "Manufacturing & Engineering",
+    "Customer Engineer",
+    "Lehi",
+    "Utah"
+  ],
+  [
+    "2024",
+    "Lumen Technologies",
+    "Technology & Software",
+    "Network Engineer",
+    "Arvada",
+    "Colorado"
+  ],
+  [
+    "2024",
+    "Self employed",
+    "Other / Unknown",
+    "Software Engineer",
+    "NYC",
+    "New York"
+  ],
+  [
+    "2024",
+    "AI Safety Camp",
+    "Startups & Innovation",
+    "Research Assistant",
+    "Denver",
+    "Colorado"
+  ],
+  [
+    "2024",
+    "City of Burlington, Vermont",
+    "Government & Public Sector",
+    "Community Service Officer",
+    "Burlington",
+    "Vermont"
+  ],
+  [
+    "2024",
+    "The Coaching Market",
+    "Startups & Innovation",
+    "Full Stack Developer",
+    "Denver",
+    "Colorado"
+  ],
+  [
+    "2024",
+    "Vawlt",
+    "Technology & Software",
+    "Software Engineer",
+    "Denver",
+    "Colorado"
+  ],
+  [
+    "2024",
+    "Hive Group",
+    "Technology & Software",
+    "Senior Finacial Analyst",
+    "Denver",
+    "Colorado"
+  ],
+  [
+    "2024",
+    "Whirlpool Corporation",
+    "Retail & Consumer Goods",
+    "Technical Product Owner",
+    "St. Joseph",
+    "Michigan"
+  ],
+  [
+    "2022",
+    "Rochester Institute of Technology",
+    "Education & Research",
+    "Researcher/Engineer II",
+    "Rochester",
+    "New York"
+  ],
+  [
+    "2023",
+    "None supplied",
+    "nan",
+    "None supplied",
+    "Merrit Island",
+    "Florida"
+  ],
+  [
+    "2020",
+    "not updated",
+    "nan",
+    "not updated",
+    "Denver",
+    "Colorado"
+  ],
+  [
+    "2020",
+    "not updated",
+    "nan",
+    "not updated",
+    "Broomfield",
+    "Colorado"
+  ],
+  [
+    "2022",
+    "not updated",
+    "nan",
+    "not updated",
+    "Denver",
+    "Colorado"
+  ],
+  [
+    "2022",
+    "not updated",
+    "nan",
+    "not updated",
+    "Santa Cruz",
+    "California"
+  ],
+  [
+    "2024",
+    "not updated",
+    "nan",
+    "not updated",
+    "nan",
+    "nan"
+  ],
+  [
+    "2024",
+    "not updated",
+    "nan",
+    "not updated",
+    "Idaho Falls",
+    "Idaho"
+  ],
+  [
+    "2024",
+    "not updated",
+    "nan",
+    "not updated",
+    "Boulder",
+    "Colorado"
+  ],
+  [
+    "2024",
+    "not updated",
+    "nan",
+    "Data Analyst",
+    "Granite Bay",
+    "California"
+  ],
+  [
+    "2024",
+    "not updated",
+    "nan",
+    "not updated",
+    "Denver",
+    "Colorado"
+  ],
+  [
+    "2024",
+    "not updated",
+    "nan",
+    "not updated",
+    "San Francisco",
+    "California"
+  ],
+  [
+    "2024",
+    "not updated",
+    "nan",
+    "Software Engineer/Data Scientist",
+    "nan",
+    "nan"
+  ]
+];
+
+  $('#alumniTable').DataTable({
+    data: alumniData,
+    columns: [
+      { title: "Graduation Year" },
+      { title: "Company" },
+      { title: "Industry" },
+      { title: "Job Title" },
+      { title: "City" },
+      { title: "State" }
+    ],
+    order: [[0, 'asc']] // Sort by Graduation Year (1st column) ascending
+  });
+});
+</script>
+
+</body>
+</html>

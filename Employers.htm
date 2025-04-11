@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Where are CSPB Graduates Working?</title>
+    <style type="text/css">
+		body {
+			font-family: sans-serif;
+			margin: 0;
+			padding: 0;
+			line-height: 1.5;
+			background-color: #f4f4f4;
+			color: #333;
+			overflow: hidden;
+			font-size: 14px; /* Reduced base font size */
+		}
+		header {
+			background-color: #0056b3;
+			color: #fff;
+			text-align: center;
+			padding: 0.5em 0; /* Reduced padding */
+			margin-bottom: 0;
+			height: 40px; /* Explicitly set smaller header height */
+		}
+		header h1 {
+			margin: 0;
+			font-size: 1.5em; /* Smaller header font */
+		}
+		/* Grid layout for the panes */
+		.container {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			grid-template-rows: calc(50vh - 40px) calc(50vh - 20px); /* Adjusted for smaller header */
+			height: calc(100vh - 40px); /* Adjusted for smaller header */
+			width: 100vw;
+			box-sizing: border-box;
+			gap: 0;
+		}
+		.pane {
+			overflow-y: scroll; /* Force scrollbars */
+			scrollbar-width: thin; /* For Firefox */
+			max-height: 100%;
+			border: 1px solid #ccc;
+			padding: 0.75em; /* Slightly reduced padding */
+			box-sizing: border-box;
+			position: relative;
+			font-size: 0.9em; /* Smaller text in panes */
+		}
+		/* Ensure scrollbars are visible in WebKit browsers */
+		.pane::-webkit-scrollbar {
+			width: 8px;
+		}
+		.pane::-webkit-scrollbar-track {
+			background: #f1f1f1;
+		}
+		.pane::-webkit-scrollbar-thumb {
+			background: #888;
+		}
+		.pane::-webkit-scrollbar-thumb:hover {
+			background: #555;
+		}
+		/* Corrected grid-area definitions with explicit values */
+		#pane1 { grid-area: 1 / 1 / 2 / 2; }
+		#pane2 { grid-area: 1 / 2 / 2 / 3; }
+		#pane3 { grid-area: 2 / 1 / 3 / 2; }
+		#pane4 { grid-area: 2 / 2 / 3 / 3; }
+		.company-card {
+			background-color: #fff;
+			border: 1px solid #eee;
+			border-radius: 4px;
+			padding: 0.4em; /* Reduced padding */
+			margin-bottom: 0.4em; /* Reduced margin */
+			transition: background-color 0.2s ease-in-out;
+		}
+		.company-card:hover {
+			background-color: #f9f9f9;
+		}
+		.company-name {
+			font-weight: bold;
+			color: #007bff;
+			font-size: 0.95em; /* Slightly smaller company names */
+		}
+		.company-description {
+			font-size: 0.85em; /* Smaller description text */
+			color: #666;
+		}
+		.pane h2 {
+			color: #0056b3;
+			border-bottom: 2px solid #0056b3;
+			padding-bottom: 0.3em; /* Reduced padding */
+			margin-top: 0;
+			margin-bottom: 0.5em; /* Reduced margin */
+			position: sticky; /* Make headings stick to the top */
+			top: 0;
+			background-color: #f4f4f4;
+			z-index: 10;
+			font-size: 1.1em; /* Smaller headings */
+		}
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Where are CSPB Graduates Working?</h1>
+    </header>
+
+    <div class="container">
+        <div id="pane1" class="pane">
+            <h2>Tier 1: Global Tech and Industry Giants</h2>
+        </div>
+        <div id="pane2" class="pane">
+            <h2>Tier 2: Large, Well-Known Corporations</h2>
+        </div>
+        <div id="pane3" class="pane">
+            <h2>Tier 3: Mid-Sized Companies</h2>
+        </div>
+        <div id="pane4" class="pane">
+            <h2>Tier 4: Smaller Companies and Startups</h2>
+        </div>
+    </div>
+
+    <script>
+        // Populate Tier Data
+        const tierData = {
+            tier1: [
+                { name: "GOOGLE", description: "A dominant force in technology, search, and numerous other sectors." },
+                { name: "AMAZON", description: "E-commerce, cloud computing, and a massive global presence." },
+                { name: "MICROSOFT", description: "Software, cloud services, and a long-standing industry leader." },
+                { name: "BOEING", description: "Aerospace and defense, a major global player." },
+                { name: "LOCKHEED MARTIN", description: "Aerospace and defense, a major global player." },
+                { name: "NORTHROP GRUMMAN", description: "Aerospace and defense, a major global player." },
+                { name: "RAYTHEON INTELLIGENCE & SPACE", description: "Aerospace and defense, a major global player." },
+                { name: "GENERAL MOTORS", description: "Automotive industry giant." },
+                { name: "FORD MOTOR COMPANY", description: "Automotive industry giant." },
+                { name: "NIKE", description: "Global leader in athletic apparel and footwear." },
+                { name: "SALESFORCE", description: "A leading cloud-based software company." },
+                { name: "CHARLES SCHWAB", description: "Major financial services firm." },
+                { name: "CAPITAL ONE", description: "Major financial services firm." },
+                { name: "DELOITTE", description: "Big Four accounting and consulting firm." }
+            ],
+            tier2: [
+                { name: "DISCOVER FINANCIAL SERVICES", description: "Financial services." },
+                { name: "LEVI STRAUSS & CO", description: "Iconic apparel company." },
+                { name: "WHIRLPOOL CORPORATION", description: "Major appliance manufacturer." },
+                { name: "APPLIED MATERIALS", description: "Semiconductor equipment." },
+                { name: "PUBLICIS SAPIENT", description: "Digital transformation consulting." },
+                { name: "ESRI", description: "Geographic information system (GIS) software." },
+                { name: "VMWARE", description: "Virtualization and cloud infrastructure." },
+                { name: "CROWDSTRIKE", description: "Cybersecurity." },
+                { name: "PROCORE TECHNOLOGIES", description: "Construction management software." },
+                { name: "WORKIVA", description: "Cloud-based compliance and reporting." },
+                { name: "CHEWY", description: "Online pet retailer." },
+                { name: "PGA TOUR", description: "Professional golf organization." },
+                { name: "ROCHE", description: "Pharmaceutical and diagnostics." },
+                { name: "SCHNEIDER ELECTRIC", description: "Energy management and automation." },
+                { name: "SPECTRUM/CHARTER COMMUNICATIONS", description: "Telecommunications." },
+                { name: "DIRECTTV", description: "Satellite television." },
+                { name: "LUMEN TECHNOLOGIES", description: "Telecommunications." },
+                { name: "IBOTTA", description: "Cash-back rewards app." },
+                { name: "KINDER MORGAN, INC.", description: "Pipeline and energy infrastructure." },
+                { name: "MAXAR TECHNOLOGIES", description: "Space technology and data." },
+                { name: "PARSONS CORPORATION", description: "Engineering and construction." },
+                { name: "CACI", description: "Information technology and services." },
+                { name: "TYLER TECHNOLOGIES", description: "Public sector software." },
+                { name: "ALARM.COM", description: "Home automation and security." },
+                { name: "CONGA", description: "Revenue operations solutions." },
+                { name: "RSM", description: "Accounting and consulting." },
+                { name: "APPIAN CORPORATION", description: "Low-code automation platform." },
+                { name: "CANONICAL", description: "Publisher of Ubuntu." },
+                { name: "CU BOULDER", description: "Prominent public university." },
+                { name: "MICHIGAN MEDICINE", description: "Leading academic medical center." },
+                { name: "CLEVELAND CLINIC MAIN CAMPUS MICROBIOLOGY LAB", description: "Well known medical institution." },
+                { name: "UMASS AMHERST", description: "Prominent public university." },
+                { name: "NOAA (NATIONAL OCEANIC AND ATMOSPHERIC ADMINISTRATION)", description: "Federal scientific agency." },
+                { name: "CIRES/NOAA GSL (COOPERATIVE INSTITUTE FOR RESEARCH IN ENVIRONMENTAL SCIENCES/GLOBAL SYSTEMS LABORATORY)", description: "Prominent research institutions." },
+                { name: "GEORGIA TECH RESEARCH INSTITUTE", description: "Prominent research institution." }
+            ],
+            tier3: [
+                { name: "GUILD EDUCATION", description: "Education benefits platform." },
+                { name: "HANDSHAKE", description: "Career services platform." },
+                { name: "PUPPET", description: "IT automation software." },
+                { name: "CHARGEPOINT", description: "Electric vehicle charging network." },
+                { name: "HUDL", description: "Sports video analysis." },
+                { name: "ENVEDA BIOSCIENCES", description: "Biotech." },
+                { name: "BLUE ORIGIN", description: "Aerospace and spaceflight services." },
+                { name: "TERRAPOWER", description: "Nuclear innovation." },
+                { name: "INITIALIZED CAPITAL", description: "Venture capital." },
+                { name: "UPGRADE INC.", description: "Fintech." },
+                { name: "VERTAFORE", description: "Insurance software." },
+                { name: "ZYNEX MONITORING SOLUTIONS", description: "Medical devices." },
+                { name: "OPUS IVS", description: "Automotive diagnostic solutions." },
+                { name: "WODIFY", description: "Fitness business management." },
+                { name: "SOVRN", description: "Advertising technology." },
+                { name: "11:11 SYSTEMS", description: "Managed infrastructure solutions." },
+                { name: "LAUNCH CONSULTING GROUP", description: "Consulting firm." },
+                { name: "SLALOM BUILD", description: "Technology consulting." },
+                { name: "ARROWSTREET, INC.", description: "Investment management." },
+                { name: "PRODUCT DEVELOPMENT ASSOCIATES, INC.", description: "Product development." },
+                { name: "GOGO BUSINESS AVIATION", description: "In-flight connectivity." },
+                { name: "TRINET", description: "HR solutions." },
+                { name: "ENT CREDIT UNION", description: "Credit union." },
+                { name: "ASM GLOBAL", description: "Venue management." },
+                { name: "PEARSON VIRTUAL SCHOOLS", description: "Online education." },
+                { name: "BI INCORPORATED", description: "Electronic monitoring." },
+                { name: "CITY OF GRAND JUNCTION", description: "Municipal government." },
+                { name: "CITY OF BURLINGTON, VERMONT", description: "Municipal government." },
+                { name: "VIRGINIA529", description: "College savings." },
+                { name: "CEDAR FALLS COMMUNITY SCHOOL DISTRICT", description: "School district." },
+                { name: "GERMAN INTL. SCHOOL OF SILICON VALLEY", description: "School." },
+                { name: "GAKUSHUIN UNIVERSITY", description: "University." },
+                { name: "UNIV. OF PITTSBURGH SCHOOL OF MEDICINE", description: "Medical School." }
+            ],
+            tier4: [
+                { name: "EXOTERRA RESOURCE LLC", description: "Specialized resource company." },
+                { name: "ADOLUS TECHNOLOGY INC", description: "Cybersecurity." },
+                { name: "WEDGE", description: "Startup." },
+                { name: "RELIANCE HIE", description: "Health information exchange." },
+                { name: "SUKI", description: "AI voice assistant for healthcare." },
+                { name: "RADIASOFT LLC", description: "Scientific software." },
+                { name: "STEALTH", description: "Startup." },
+                { name: "THATGAMECOMPANY", description: "Game development." },
+                { name: "GRAVITY FOUNDATION", description: "Foundation." },
+                { name: "TERPMETRIX", description: "Technology company." },
+                { name: "NOV", description: "Oil and gas equipment." },
+                { name: "TDI TECHNOLOGIES", description: "Technology company." },
+                { name: "G LOGISTICS", description: "Logistics." },
+                { name: "TECK RESOURCES LIMITED", description: "Mining company." },
+                { name: "INCEPT 3D", description: "3D technology." },
+                { name: "BNP MEDIA", description: "Media company." },
+                { name: "TEK EXPERTS", description: "IT support." },
+                { name: "KWOKMAN PRODUCTIONS", description: "Production company." },
+                { name: "SLAMBOX", description: "Startup." },
+                { name: "SMITH CAPITAL INVESTORS, LLC", description: "Investment firm." },
+                { name: "EMPIRIUM INC", description: "Technology company." },
+                { name: "HYPHEN SOLUTIONS", description: "Construction software." },
+                { name: "RWS GROUP", description: "Language services." },
+                { name: "G2I INC.", description: "Recruiting." },
+                { name: "AI SAFETY CAMP", description: "Organization." },
+                { name: "THE COACHING MARKET", description: "Market place." },
+                { name: "VAWLT", description: "Technology company." },
+                { name: "HIVE GROUP", description: "Consulting." },
+                { name: "THAT RECOMMENDER SYSTEMS LAB", description: "Research Lab." },
+                { name: "CONCURRENT TECHNOLOGIES CORP", description: "Research and development." },
+                { name: "OTTO INFORMATICA", description: "IT Company." },
+                { name: "KENOSHA EPC", description: "Engineering, procurement, construction." }
+            ]
+        };
+
+        // Improved function to generate company cards
+        function generateCompanyCards(tier, data) {
+            const container = document.getElementById(`pane${tier.slice(-1)}`);
+            const heading = container.querySelector('h2').outerHTML;
+            let content = heading; // Start with the heading
+            
+            // Add company cards
+            data.forEach(company => {
+                content += `<div class="company-card">
+                                <div class="company-name">${company.name}</div>  
+                                <div class="company-description">${company.description}</div>
+                            </div>`;
+            });
+            
+            container.innerHTML = content;
+            
+            // Force browser to recalculate layout
+            setTimeout(() => {
+                container.style.display = 'none';
+                void container.offsetHeight; // Force reflow
+                container.style.display = 'block';
+            }, 10);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            generateCompanyCards('tier1', tierData.tier1);
+            generateCompanyCards('tier2', tierData.tier2);
+            generateCompanyCards('tier3', tierData.tier3);
+            generateCompanyCards('tier4', tierData.tier4);
+        });
+    </script>
+
+</body>
+
+</html>
